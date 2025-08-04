@@ -1,0 +1,37 @@
+spring:
+  application:
+    name: spring-intro
+  ai:
+    openai:
+      api-key: ${OPENAI_API_KEY}
+      embedding:
+        options:
+          model: text-embedding-3-small
+    mcp:
+      client:
+        enabled: true
+        name: my-mcp-client
+        version: 1.0.0
+        request-timeout: 30s
+        type: SYNC
+        toolcallback:
+          enabled: true
+        sse:
+          connections:
+            webmvc-mcp-server:
+              url: http://localhost:8091
+              sse-endpoint: /sse
+
+app:
+  cfa:
+    vectorStorePath: 'C:\Users\mahes.000\IdeaProjects\Spring-AI\Intro\cfa-vector-store.json'
+    documentsToLoad:
+      - 'C:\Users\mahes.000\Documents\CFA Level 3\cfa-program2025L3V1.pdf'
+      - 'C:\Users\mahes.000\Documents\CFA Level 3\cfa-program2025L3V2.pdf'
+      - 'C:\Users\mahes.000\Documents\CFA Level 3\cfa-program2025L3V3.pdf'
+      - 'C:\Users\mahes.000\Documents\CFA Level 3\cfa-program2025L3V4.pdf'
+      - 'C:\Users\mahes.000\Documents\CFA Level 3\cfa-program2025L3V5.pdf'
+
+logging:
+  level:
+    org.springframework.ai.chat.client.advisor: DEBUG
